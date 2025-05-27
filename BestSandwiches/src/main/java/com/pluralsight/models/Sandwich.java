@@ -1,6 +1,11 @@
 package com.pluralsight.models;
 
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,8 +73,25 @@ public class Sandwich {
         price += amount;
     }
     public String getSummary() {
-        return "Bread: " + breadType + "\nSize: " + size + "\"\nToasted: " + (toasted ? "Yes" : "No") +
-                "\nMeats: " + meats + "\nCheese:" + cheese +
-                "\nTopping:" + toppings + "\nDrinks:" + drink +
-                "\nChips:" + chips + "\nTotal: $" + String.format("%.2f", price);
-}}
+        String summary;
+        try {
+            FileWriter fileDeposit = new FileWriter("transactions.csv", true);
+            BufferedWriter bufferDeposit = new BufferedWriter(fileDeposit);
+
+            summary = "======Order Summary======" + "\nBread: " + breadType +
+                    "\nSize: " + size + "\"\nToasted: " + (toasted ? "Yes" : "No") +
+                    "\nMeats: " + meats + "\nCheese:" + cheese +
+                    "\nTopping:" + toppings + "\nDrinks:" + drink +
+                    "\nChips:" + chips +
+                    "\n---------------------" + "\nTotal: $" + String.format("%.2f", price);
+
+            bufferDeposit.write(LocalDate.now() + " " + LocalTime.now() + "\n" + summary + "\n\n");
+            bufferDeposit.close();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to write transaction summary", e);
+        }
+
+        return summary;
+
+    }
+}

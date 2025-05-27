@@ -8,7 +8,7 @@ public class SandwichBuilder {
         Scanner scanner = new Scanner(System.in);
         //Bread input
         System.out.println("Select your bread (Required)");
-        System.out.println("White, Wheat, Rye, Wrap");//
+        System.out.println("White \nWheat \nRye \nWrap");//
         String userBreadInput = scanner.nextLine().toLowerCase().trim();
 
         //input validation
@@ -42,6 +42,7 @@ public class SandwichBuilder {
         Chips.addChips();
 
 
+
         //System.out.println("\n" + sandwich.getSummary());
     }
 
@@ -58,12 +59,6 @@ public class SandwichBuilder {
                 " - chicken\n" +
                 " - bacon\n");
         String userMeatInput = scanner.nextLine();//scanner to choose meat type
-
-        //User input validation
-        //while (!userMeatInput.matches("[steak,ham,salami,roast beef,chicken,bacon]")) {
-        //System.out.println("oops! we don't have" + userMeatInput);
-       // userMeatInput = scanner.nextLine().toLowerCase().trim();
-        //}
 
         System.out.println("Extra meat? (yes/no)");// prompt the user for extra meet
         boolean extra = scanner.nextLine().equalsIgnoreCase("yes");//scanner to return if extra meat
@@ -82,17 +77,13 @@ public class SandwichBuilder {
     public static void addCheese(Sandwich sandwich) {
         Scanner scanner = new Scanner(System.in);
         int size = sandwich.getSize();
-        System.out.println("Select Cheese:  - american\n" +
+        System.out.println("Select Cheese:  \n- american\n" +
                 " - provolone\n" +
                 " - cheddar\n" +
                 " - swiss\n");
         String userCheeseInput = scanner.nextLine();
-        //while (!userCheeseInput.matches("[american, provolone, cheddar, swiss]")) {
-        //    System.out.println("oops! we don't have" + userCheeseInput);
-         //   userCheeseInput = scanner.nextLine().toLowerCase().trim();
-       // }
 
-        System.out.println(" Do you want extra cheese? (Yes/No)");
+        System.out.println("Do you want extra cheese? (Yes/No)");
         boolean extra = scanner.nextLine().equalsIgnoreCase("yes");
 
         double basePrice = 0, extraPrice = 0;
@@ -103,6 +94,8 @@ public class SandwichBuilder {
         double total = basePrice + (extra ? extraPrice : 0);
         sandwich.addCheese(userCheeseInput + (extra ? " (extra)" : ""));
         Sandwich.addToPrice(total);
+
+        System.out.printf("Added %s %s for $%.2f\n", extra ? "extra" : "", userCheeseInput, total);
 
     }
     public static void toppings(Sandwich sandwich){
@@ -137,6 +130,8 @@ public class SandwichBuilder {
                 " - sauce");
         String userSidesInput = scanner.nextLine();
         sandwich.addTopping(userSidesInput.toLowerCase());
+
+        System.out.println("\n" + sandwich.getSummary());
 
     }
 

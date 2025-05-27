@@ -18,11 +18,10 @@ public class Chips implements Items {
         System.out.println("Do you want Chips (yes/no)");
         String userChipsInput = scanner.nextLine();
 
-        if (userChipsInput.equals("yes")) {
-            System.out.println("No chips added.");
-            return ; // Return nothing if user says no
 
-        }
+        System.out.println("");
+
+
     }
 
     @Override
