@@ -1,18 +1,24 @@
 package com.pluralsight.ui;
+import java.io.*;
 
 import com.pluralsight.models.*;
 import com.pluralsight.util.ReceiptWriter;
 
-import java.util.List;
 import java.util.Scanner;
 
 
 public class UserInterface {
+    FileWriter fw = new FileWriter("transactions.csv", true);
+    BufferedWriter bw = new BufferedWriter(fw);
+
     Scanner scanner = new Scanner(System.in);
 
+    public UserInterface() throws IOException {
+    }
 
-// Start the app
-    public void run(){
+
+    // Start the app
+    public void run() throws IOException {
         boolean mainMenu = true;
         while (mainMenu) {
             System.out.println("Welcome to Best Sandwich");
@@ -22,37 +28,39 @@ public class UserInterface {
             switch (userMainMenuInput) {
                 case "1" -> OrderMenu();
                 case "0" -> {
-                    System.out.println( "Exiting...");
+                    System.out.println("Exiting...");
                     mainMenu = false;
                 }
                 default -> System.out.println("Invalid input");
             }
         }
     }
-    public void OrderMenu(){
+//Why is java sugesting for me to aad IOException or us try and catch
+    public void OrderMenu() throws IOException {
         boolean orderMenu = true;
 
         while (orderMenu) {
-        System.out.println("Choose from these option");
-        System.out.println("1) Add Sandwich \n2) Add Drinks \n3) Add Chips \n4) Checkout \n5) Cancel Order");
-        String userOderInput = scanner.nextLine();
+            System.out.println("Choose from these option");
+            System.out.println("1) Add Sandwich \n2) Add Drinks \n3) Add Chips \n4) Checkout \n5) Cancel Order");
+            String userOrderInput = scanner.nextLine();
 
-
-            switch (userOderInput) {
-            case "1" -> SandwichBuilder.buildSandwich();
-            case "2" -> Drinks.addDrinks();
-            case "3" -> Chips.addChips();
-            case "4" -> ReceiptWriter.checkout();
-            case "5" -> {
-                ReceiptWriter.cancelOrder();
-                orderMenu = false;
+            while (!userOrderInput.matches("[1-5]")) {
+                System.out.println("Invalid input. Please enter a number between 1 and 5.");
+                userOrderInput = scanner.nextLine().trim();
             }
-            default  -> System.out.println("Invalid input");
+
+            switch (userOrderInput) {
+                case "1" -> SandwichBuilder.buildSandwich();
+                case "2" -> Drinks.addDrinks();
+                case "3" -> Chips.addChips();
+                case "4" -> ReceiptWriter.checkout();
+                case "5" -> {
+                    ReceiptWriter.cancelOrder();
+                    orderMenu = false;
+                }
+                default -> System.out.println("Invalid input");
+            }
         }
-
-
-
-
+        run();
     }
-
-}}
+}

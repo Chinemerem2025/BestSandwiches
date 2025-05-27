@@ -3,7 +3,6 @@ package com.pluralsight.models;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Sandwich {
     private String breadType;
@@ -12,13 +11,16 @@ public class Sandwich {
     private List<String> meats = new ArrayList<>();
     private List<String> cheese = new ArrayList<>();
     private List<String> toppings = new ArrayList<>();
-    private List<String> Sauces = new ArrayList<>();
+    private List<String> sauces = new ArrayList<>();
     private List<String> sides = new ArrayList<>();
+
+    private String drink;
+    private String chips;
     private static double price;
 
-    public Sandwich(String breadType, int size, boolean toasted) {
+    public Sandwich(String breadType, String size, boolean toasted) {
         this.breadType = breadType;
-        this.size = size;
+        this.size = Integer.parseInt(size);
         this.toasted = toasted;
     }
 
@@ -40,11 +42,34 @@ public class Sandwich {
     public void addMeat(String meat) {
         meats.add(meat);
     }
+    public void addCheese(String cheese) {
+        this.cheese.add(cheese);
+    }
+    public void addTopping(String topping) {
+        toppings.add(topping);
+    }
+    public void addSauce(String sauce) {
+        sauces.add(sauce);
+    }
+
+    public void addSide(String side) {
+        sides.add(side);
+    }
+
+    public void addDrink(String drink) {
+        this.drink = drink;
+    }
+
+    public void addChips(String chips) {
+        this.chips = chips;
+    }
 
     public static void addToPrice(double amount) {
         price += amount;
     }
     public String getSummary() {
         return "Bread: " + breadType + "\nSize: " + size + "\"\nToasted: " + (toasted ? "Yes" : "No") +
-                "\nMeats: " + meats + "\nTotal: $" + String.format("%.2f", price);
+                "\nMeats: " + meats + "\nCheese:" + cheese +
+                "\nTopping:" + toppings + "\nDrinks:" + drink +
+                "\nChips:" + chips + "\nTotal: $" + String.format("%.2f", price);
 }}

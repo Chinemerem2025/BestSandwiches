@@ -1,4 +1,4 @@
-package com.pluralsight.util;
+package com.pluralsight.ui;
 
 public interface Items {
     String getName();
