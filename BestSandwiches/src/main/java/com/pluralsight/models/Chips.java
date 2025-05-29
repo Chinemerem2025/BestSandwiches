@@ -1,28 +1,35 @@
 package com.pluralsight.models;
 
-import com.pluralsight.ui.Items;
+import com.pluralsight.ui.IPriceable;
+import com.pluralsight.util.ReceiptWriter;
 
 import java.util.Scanner;
 
 
 
-public class Chips implements Items {
+public class Chips implements IPriceable {
     private String name;
 
     public Chips(String name) {
         this.name = name;
     }
 
-    public static void addChips() {
+    public static Chips addChips() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want Chips (yes/no)");
-        String userChipsInput = scanner.nextLine();
+        String userChipsInput = scanner.nextLine().toLowerCase();
 
+        if (userChipsInput.equalsIgnoreCase("yes")) {
+            System.out.println("Select chip type: \nPotato \nPlantain");
+            String type = scanner.nextLine().trim();
+            System.out.println("Added chips: " + type + " $1.50");
+            return new Chips(type);
+        }
 
-        System.out.println("");
-
+        return null;
 
     }
+
 
     @Override
     public String getName() {
@@ -30,7 +37,7 @@ public class Chips implements Items {
     }
 
     @Override
-    public double getPrice(String size) {
+    public double getPrice() {
         return 1.50;
     }
 }

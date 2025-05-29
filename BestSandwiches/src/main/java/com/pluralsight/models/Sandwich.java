@@ -1,6 +1,8 @@
 package com.pluralsight.models;
 
 
+import com.pluralsight.ui.IPriceable;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,90 +10,76 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-public class Sandwich {
-    private String breadType;
-    private int size;
-    private boolean toasted;
-    private List<String> meats = new ArrayList<>();
-    private List<String> cheese = new ArrayList<>();
-    private List<String> toppings = new ArrayList<>();
-    private List<String> sauces = new ArrayList<>();
-    private List<String> sides = new ArrayList<>();
+public class Sandwich implements IPriceable {
+    private static String breadType;
+    private static int size;
+    private static boolean toasted;
+    private static List<String> meats = new ArrayList<>();
+    private static List<String> cheese = new ArrayList<>();
+    private static List<String> toppings = new ArrayList<>();
+    private static Drink drink;
+    private static Chips chips;
 
-    private String drink;
-    private String chips;
     private static double price;
+    private static String orderNumber;
 
     public Sandwich(String breadType, String size, boolean toasted) {
-        this.breadType = breadType;
-        this.size = Integer.parseInt(size);
-        this.toasted = toasted;
+        Sandwich.breadType = breadType;
+        Sandwich.size = Integer.parseInt(size);
+        Sandwich.toasted = toasted;
+        Sandwich.orderNumber = generateOrderNumber();
     }
 
-    public String getBreadType() {
-        return breadType;
+
+    public String getBreadType() {return breadType;}
+
+    public int getSize() {return size;}
+
+    public boolean isToasted() {return toasted;}
+
+    public void addMeat(String meat) {meats.add(meat);}
+
+    public void addCheese(String cheeseItem) {cheese.add(cheeseItem);}
+
+    public void addTopping(String topping) {toppings.add(topping);}
+
+    private String generateOrderNumber() {
+        return UUID.randomUUID().toString().substring(0, 9).toUpperCase();
     }
 
-    public int getSize() {
-        return size;
-    }
+    public static String getOrderNumber() {return orderNumber;}
 
-    public boolean isToasted() {
-        return toasted;
-    }
 
-    public double getPrice() {
-        return price;
-    }
-    public void addMeat(String meat) {
-        meats.add(meat);
-    }
-    public void addCheese(String cheese) {
-        this.cheese.add(cheese);
-    }
-    public void addTopping(String topping) {
-        toppings.add(topping);
-    }
-    public void addSauce(String sauce) {
-        sauces.add(sauce);
-    }
-
-    public void addSide(String side) {
-        sides.add(side);
-    }
-
-    public void addDrink(String drink) {
+    public void addDrink(Drink drink) {
         this.drink = drink;
+        price += drink.getPrice();
     }
-
-    public void addChips(String chips) {
+    public void addChips(Chips chips) {
         this.chips = chips;
+        if (chips != null) price += chips.getPrice();
     }
+    public static void addToPrice(double amount) {price += amount;}
 
-    public static void addToPrice(double amount) {
-        price += amount;
-    }
-    public String getSummary() {
-        String summary;
-        try {
-            FileWriter fileDeposit = new FileWriter("transactions.csv", true);
-            BufferedWriter bufferDeposit = new BufferedWriter(fileDeposit);
-
-            summary = "======Order Summary======" + "\nBread: " + breadType +
+    public static String getSummary() {
+        return  "======Order Summary======" + "\nOrder #:" + orderNumber + "\nBread: " + breadType +
                     "\nSize: " + size + "\"\nToasted: " + (toasted ? "Yes" : "No") +
                     "\nMeats: " + meats + "\nCheese:" + cheese +
-                    "\nTopping:" + toppings + "\nDrinks:" + drink +
-                    "\nChips:" + chips +
+                    "\nTopping:" + toppings + "\nDrinks:" +  (drink != null ? drink.getName() : "None") +  " " +
+                    "\nChips:" + (chips != null ? chips.getName() : "None") +
                     "\n---------------------" + "\nTotal: $" + String.format("%.2f", price);
 
-            bufferDeposit.write(LocalDate.now() + " " + LocalTime.now() + "\n" + summary + "\n\n");
-            bufferDeposit.close();
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to write transaction summary", e);
-        }
 
-        return summary;
+    }
 
+    @Override
+    public String getName() {
+        return breadType + size;
+    }
+
+    @Override
+    public double getPrice() {
+        return price;
     }
 }

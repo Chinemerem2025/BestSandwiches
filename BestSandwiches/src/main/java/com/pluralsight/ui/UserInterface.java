@@ -10,7 +10,9 @@ import java.util.Scanner;
 public class UserInterface {
     FileWriter fw = new FileWriter("transactions.csv", true);
     BufferedWriter bw = new BufferedWriter(fw);
-
+    Order<Sandwich> sandwichOrder = new Order<>();
+    Order<Drink> drinkOrder = new Order<>();
+    Order<Chips> chipsOrder = new Order<>();
     Scanner scanner = new Scanner(System.in);
 
     public UserInterface() throws IOException {
@@ -48,19 +50,30 @@ public class UserInterface {
                 System.out.println("Invalid input. Please enter a number between 1 and 5.");
                 userOrderInput = scanner.nextLine().trim();
             }
-
             switch (userOrderInput) {
-                case "1" -> SandwichBuilder.buildSandwich();
-                case "2" -> Drinks.addDrinks();
-                case "3" -> Chips.addChips();
-                case "4" -> ReceiptWriter.checkout();
+                case "1" -> {
+                    Sandwich sandwich = SandwichBuilder.buildSandwich();
+                    sandwichOrder.addItem(sandwich);
+                }
+                case "2" -> {
+                    Drink drink = Drink.addDrinks();
+                    drinkOrder.addItem(drink);
+                }
+                case "3" -> {
+                    Chips chips = Chips.addChips();
+                    chipsOrder.addItem(chips);
+                }
+                case "4" -> {
+                    ReceiptWriter.checkout(sandwichOrder, drinkOrder, chipsOrder);
+                    orderMenu = false;
+                }
                 case "5" -> {
                     ReceiptWriter.cancelOrder();
                     orderMenu = false;
                 }
-                default -> System.out.println("Invalid input");
             }
         }
+
         run();
     }
 }
