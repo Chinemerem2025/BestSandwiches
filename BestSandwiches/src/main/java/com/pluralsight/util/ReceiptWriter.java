@@ -36,6 +36,7 @@ public class ReceiptWriter {
         if (userCheckoutInput.equalsIgnoreCase("yes")) {
             String summary = Sandwich.getSummary();
             System.out.println("Your Order:\n" + summary);
+            System.out.println();
             try {
                 FileWriter fw = new FileWriter("transactions.csv", true);
                 BufferedWriter bw = new BufferedWriter(fw);

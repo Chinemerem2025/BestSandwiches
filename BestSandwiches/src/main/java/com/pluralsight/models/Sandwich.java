@@ -7,6 +7,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +64,7 @@ public class Sandwich implements IPriceable {
     public static void addToPrice(double amount) {price += amount;}
 
     public static String getSummary() {
-        return  "======Order Summary======" + "\nOrder #:" + orderNumber + "\nBread: " + breadType +
+        return  "======Order Summary======" +"\nDate:"+ LocalDateTime.now() + "\nOrder #:" + orderNumber + "\nBread: " + breadType +
                     "\nSize: " + size + "\"\nToasted: " + (toasted ? "Yes" : "No") +
                     "\nMeats: " + meats + "\nCheese:" + cheese +
                     "\nTopping:" + toppings + "\nDrinks:" +  (drink != null ? drink.getName() : "None") +  " " +

@@ -22,3 +22,29 @@ Drinks:coke (4.0)
 Chips:potato
 ---------------------
 Total: $11.55
+======Order Summary======
+Date:2025-05-29
+Order #:C99E93D3-
+Bread: white
+Size: 4"
+Toasted: Yes
+Meats: [steak (extra)]
+Cheese:[swiss (extra)]
+Topping:[onions, ranch, sauce]
+Drinks:water (12.0) 
+Chips:potato
+---------------------
+Total: $12.55
+======Order Summary======
+Date:2025-05-29T19:06:10.827755500
+Order #:D1BEED50-
+Bread: rye
+Size: 4"
+Toasted: Yes
+Meats: [ham (extra)]
+Cheese:[swiss (extra)]
+Topping:[pickles, mayo, sauce]
+Drinks:sprite (12.0) 
+Chips:Plantain
+---------------------
+Total: $12.55
