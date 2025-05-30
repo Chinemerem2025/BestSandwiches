@@ -1,5 +1,5 @@
 ## Best Sandwich Shop
-Application to order sandwich with options to custormize it to your test.
+An application for ordering sandwiches with customizable options to match your personal taste.
 ## Content
 1. Description
 2. Features
