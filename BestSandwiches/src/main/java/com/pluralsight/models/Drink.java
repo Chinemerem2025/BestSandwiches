@@ -14,16 +14,15 @@ public class Drink implements IPriceable{
         this.size = size;
     }
 
-    // Static method to prompt user and return a Drink object
+
     public static Drink addDrinks () {
         Scanner scanner = new Scanner(System.in);
+        //  prompt user for Drink
         System.out.println("Do you want drink (yes/no)");
         String userChoice = scanner.nextLine();
         if (userChoice.equalsIgnoreCase("yes")) {
 
         }
-
-
 
         System.out.println("Select drink: \nCoke \nSprite \nWater");
         String userDrinkInput = scanner.nextLine().trim();

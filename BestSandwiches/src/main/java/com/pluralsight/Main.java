@@ -10,18 +10,18 @@ public class Main {
         UserInterface ui = new UserInterface();
         ui.run();
 
-        Order<Sandwich> sandwichBasket = new Order<>();
+        //Order<Sandwich> sandwichBasket = new Order<>();
 
         //SandwichBuilder.buildSandwich();
-        sandwichBasket.addItem(new Sandwich("Italian BMT", "8", true));
+       // sandwichBasket.addItem(new Sandwich("Italian BMT", "8", true));
 
         //Order<Drink> drinkBasket = new Order<>();
        // Drink.addDrinks();
        // drinkBasket.addItem(new Drink("Coke", 1.80));
 
-        Order<Chips> chipBasket = new Order<>();
-        Chips.addChips();
-        chipBasket.addItem(new Chips("Paprika"));
+        //Order<Chips> chipBasket = new Order<>();
+        //Chips.addChips();
+       // chipBasket.addItem(new Chips("Paprika"));
 
        // public static void printOrderSummary(Order<? extends IPriceable>... Order) {
          // double grandTotal = 0;

@@ -1,0 +1,24 @@
+======Order Summary======
+Order #:null
+Bread: null
+Size: 0"
+Toasted: No
+Meats: []
+Cheese:[]
+Topping:[]
+Drinks:None 
+Chips:None
+---------------------
+Total: $0.00
+======Order Summary======
+Order #:F70B101E-
+Bread: white
+Size: 4"
+Toasted: Yes
+Meats: [ham (extra)]
+Cheese:[swiss (extra)]
+Topping:[pickles, ranch, sauce]
+Drinks:coke (4.0) 
+Chips:potato
+---------------------
+Total: $11.55

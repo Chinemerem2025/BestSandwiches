@@ -25,8 +25,7 @@ public class SandwichBuilder {
 
         // Create sandwich object
         Sandwich sandwich = new Sandwich(userBreadInput, userSizeInput, userToastInput);
-
-        // Add toppings
+        // Add toppings to the sandwich
         addMeat(sandwich);
         addCheese(sandwich);
         toppings(sandwich);

@@ -37,7 +37,7 @@ public class UserInterface {
             }
         }
     }
-//Why is java sugesting for me to aad IOException or us try and catch
+//Why is java suggesting for me to aad IOException or us try and catch
     public void OrderMenu() throws IOException {
         boolean orderMenu = true;
 
