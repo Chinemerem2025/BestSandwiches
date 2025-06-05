@@ -48,3 +48,16 @@ Drinks:sprite (12.0)
 Chips:Plantain
 ---------------------
 Total: $12.55
+======Order Summary======
+Date:2025-05-30T10:10:17.575013300
+Order #:B4A85EB1-
+Bread: wheat
+Size: 12"
+Toasted: Yes
+Meats: [ham (extra)]
+Cheese:[swiss (extra)]
+Topping:[pickless, mayo, sauce]
+Drinks:coke (12.0) 
+Chips:potato
+---------------------
+Total: $20.65
